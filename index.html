@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+  <h1>JSON EĞİTİMİ</h1>
+  
+
+</div>
+
+<script>
+//Veri hazırlayıp gönderme
+var myObj = { "name":"John", "age":31, "city":"New York" };
+var myJSON = JSON.stringify(myObj);  //Objeyi string bir ifadeye çevirir
+window.location = "demo_json.php?x=" + myJSON;
+
+//Veri alma
+var myJSON = '{ "name":"John", "age":31, "city":"New York" }';
+var myObj = JSON.parse(myJSON); //string veriyi anlamlı object haline getirir
+
+//Jsonda key değerleri mutlaka tırnak içinde olmalı
+//Json çift tırnak kullanımı şarttır
+
+
+//Erişim
+//array içinde 3 object ve bunlara kapsayan bir object
+var calisanlar = {"employees":[
+    { "firstName":"John", "lastName":"Doe" },
+    { "firstName":"Anna", "lastName":"Smith" },
+    { "firstName":"Peter", "lastName":"Jones" }
+]};
+calisanlar.employees[0].firstName
+
+myObj = { "name":"John", "age":30, "car":null };
+x = myObj["name"];
+yada
+x = myObj.name
+
+
+//Key değerlerini okuma
+myObj = { "name":"John", "age":30, "car":null };
+for (x in myObj) {
+    document.getElementById("demo").innerHTML += x;
+}
+
+//Keylerin valuelarına ulaşma
+myObj = { "name":"John", "age":30, "car":null };
+for (x in myObj) {
+    document.getElementById("demo").innerHTML += myObj[x];
+}
+
+//İç İçe Json
+myObj = {
+    "name":"John",
+    "age":30,
+    "cars": {
+        "car1":"Ford",
+        "car2":"BMW",
+        "car3":"Fiat"
+    }
+ }
+
+ //Silme
+ delete myObj.cars.car2;
+
+
+//Kapsamlı örnek
+myObj = {
+    "name":"John",
+    "age":30,
+    "cars": [
+        { "name":"Ford", "models":[ "Fiesta", "Focus", "Mustang" ] },
+        { "name":"BMW", "models":[ "320", "X3", "X5" ] },
+        { "name":"Fiat", "models":[ "500", "Panda" ] }
+    ]
+ }
+
+//Değer içerisinde değişiklik yapma
+myObj.cars[1] = "Mercedes";
+</script>
+
+</body>
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style>
+      .panel-heading{
+          font-size: large;
+          text-align: center;
+      }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h1 class="page-header text-center">JSON ÖRNEK - ARABALAR</h1>
+
+  <br>
+  <div class="row">
+      <div class="col-md-4">
+            <div class="panel panel-primary">
+                    <div class="panel-heading" id="baslik1"></div>
+                    <div class="panel-body" id="icerik1">                        
+                    </div>
+              </div>
+      </div>
+
+      <div class="col-md-4">
+            <div class="panel panel-danger">
+                    <div class="panel-heading" id="baslik2"></div>
+                    <div class="panel-body" id="icerik2">                        
+                    </div>
+              </div>
+      </div>
+
+      <div class="col-md-4">
+            <div class="panel panel-success">
+                    <div class="panel-heading" id="baslik3"></div>
+                    <div class="panel-body" id="icerik3">                        
+                    </div>
+              </div>
+      </div>
+  </div>
+  
+</div>
+
+<script>
+var arabalar = {
+    "kisi1": {
+    "name":"Abdullah Eren",
+    "surname":"Güvercin",
+    "age":30,
+    "cars": [
+        { "name":"Ford", "models":[ "Fiesta", "Focus", "Mustang" ] },
+        { "name":"BMW", "models":[ "320", "X3", "X5" ] },
+        { "name":"Fiat", "models":[ "500", "Panda" ] }
+     ]
+    },
+    "kisi2":{
+    "name":"Mehtap",
+    "surname":"Ağır",
+    "age":30,
+    "cars": [
+        { "name":"Audi", "models":[ "A1", "A5", "A8", "A3" ] },
+        { "name":"Tofaş", "models":[ "Şahin", "Doğan", "Kartal", "Serçe" ] }
+     ]
+    },
+    "kisi3":{
+    "name":"Mustafa Can",
+    "surname":"Özkan",
+    "age":30,
+    "cars": [
+        { "name":"Mercedes", "models":[ "CLA", "C200", "Compressor" ] }
+     ]
+    }
+ };
+
+ $(document).ready(function(){
+     $('#baslik1').text(arabalar.kisi1.name + " " + arabalar.kisi1.surname);
+     $('#baslik2').text(arabalar.kisi2.name + " " + arabalar.kisi2.surname);
+     $('#baslik3').text(arabalar.kisi3.name + " " + arabalar.kisi3.surname);
+
+     //Yeni araba grubu ekleme
+     arabalar.kisi3.cars.push({ "name":"Volkswagen", "models":[ "Passat", "Jetta", "Tiguan", "Polo", "Bettle" ] });
+
+     //Değişiklik
+     arabalar.kisi2.cars[1].name = "Dacia";
+     arabalar.kisi2.cars[1].models[0] = "Duster";
+     arabalar.kisi2.cars[1].models[1] = "Logan";
+     arabalar.kisi2.cars[1].models[2] = "Sporteks";
+
+     //Silme
+     delete  arabalar.kisi2.cars[1].models[3];
+
+
+     var icerik1Html = ArabaHazirla(arabalar.kisi1.cars);
+     $('#icerik1').html(icerik1Html);
+
+     var icerik2Html = ArabaHazirla(arabalar.kisi2.cars);
+     $('#icerik2').html(icerik2Html);
+
+     var icerik3Html = ArabaHazirla(arabalar.kisi3.cars);
+     $('#icerik3').html(icerik3Html);
+ });
+
+ function ArabaHazirla(carObj){
+     var htmlHazirla = "";
+     //Arabalar
+    for(var i=0; i<carObj.length; i++){
+        htmlHazirla += "<h3>"+carObj[i].name+"</h3>";
+        htmlHazirla += "<div class=\"list-group\">";
+            
+        var modeller = carObj[i].models;
+        //Modeller
+        for(var j=0; j<modeller.length; j++){
+            htmlHazirla += "<a href='#' class='list-group-item'>"+ modeller[j] +"</a>";
+        }
+        
+        htmlHazirla += "</div>";
+
+        //Sonuncuyu atla
+        if(carObj.length != i+1){
+            htmlHazirla += "<hr>";
+        }
+    }
+
+    return htmlHazirla;
+ }
+</script>
+
+</body>
+</html>

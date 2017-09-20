@@ -1,0 +1,37 @@
+//DEĞİŞKENLER
+
+//Array tanımlama
+var arr = new Array();
+
+//Array'e değer gönderme
+arr.push("eleman1");
+arr.push("eleman2");
+
+
+//OBJECT
+var test = {};
+test.ad = "Eren"
+test.soyad = "Güvercin"
+test.merhaba = function (ad, soyad){ alert("Merhaba "+ ad + " " + soyad) }
+test.merhaba("Musti", "Özkan")
+test.merhaba(test.ad, test.soyad)
+test.arr = new Array()
+
+
+var yeni = {ad:"Mehtap", soyad:"Ağır", yas:26, merhaba:function(){alert("Merhaba "+ this.ad + " "+ this.soyad)}}
+
+var yeni1 = {"ad":"Mehtap", "soyad":"Ağır", "yas":26}
+
+
+//QUERYSTRING
+Sayfalar arasındaki isteklerin ne olduğunu belirtmeye yarar.
+Örneğin bir haber idsi gönderilir ve o gösterilir.
+http://adana-aski.gov.tr/web/haberdetay.aspx?Id=3228
+
+Bu urli gören csharp pageloadda haberIdsini alır ve gösterir.
+string haberId = Request.QueryString["Id"];
+
+İkinci ve daha fazla veri için
+?Id=3228&ad=eren&mobil=true&yil=2017
+
+https://www.google.com.tr/search?q=gmail&oq=gma&aqs=chrome.0.69i59j69i61l3j0j69i65.864j0j7&sourceid=chrome&ie=UTF-8
